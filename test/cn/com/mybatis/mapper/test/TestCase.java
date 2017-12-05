@@ -1,6 +1,7 @@
 package cn.com.mybatis.mapper.test;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -8,7 +9,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import cn.com.mybatis.bean.Orders;
 import cn.com.mybatis.bean.User;
+import cn.com.mybatis.mapper.OrdersMapper;
 import cn.com.mybatis.mapper.UserMapper;
 
 public class TestCase {
@@ -26,5 +29,25 @@ public class TestCase {
 		mapper.save(user);
 		session.commit();
 		session.close();
+	}
+	
+	@Test
+	public void findOrdersUser() throws Exception{
+		SqlSession session = ssf.openSession();
+		OrdersMapper mapper = session.getMapper(OrdersMapper.class);
+		List<Orders> list = mapper.findOrdersUser();
+		for (Orders orders : list) {
+			System.out.println(orders);
+		}
+	}
+	
+	@Test
+	public void findOrdersUserdetail() throws Exception{
+		SqlSession session = ssf.openSession();
+		OrdersMapper mapper = session.getMapper(OrdersMapper.class);
+		List<Orders> list = mapper.findOrdersUserdetail();
+		for (Orders orders : list) {
+			System.out.println(orders);
+		}
 	}
 }

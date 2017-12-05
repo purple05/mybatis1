@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.mybatis.mapper.OrdersMapper">
+	
+	<resultMap type="cn.com.mybatis.bean.Orders" id="ordersResultMap">
+		<id property="id" column="id"/>
+		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="note" property="note"/>
+		
+		<association property="user" javaType="cn.com.mybatis.bean.User">
+			<id column="user_id" property="id"/>
+			<result column="username" property="username"/>
+			<result column="birthday" property="birthday"/>
+			<result column="sex" property="sex"/>
+			<result column="address" property="address"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="cn.com.mybatis.bean.Orders" id="ordersdetailResultMap">
+		<id property="id" column="id"/>
+		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="note" property="note"/>
+		
+		<association property="user" javaType="cn.com.mybatis.bean.User">
+			<id column="user_id" property="id"/>
+			<result column="username" property="username"/>
+			<result column="birthday" property="birthday"/>
+			<result column="sex" property="sex"/>
+			<result column="address" property="address"/>
+		</association>
+		
+		<collection property="orderdetails" ofType="cn.com.mybatis.bean.Orderdetail">
+			<id column="od_id" property="id"/>
+			<result column="orders_id" property="ordersId"/>
+			<result column="items_id" property="itemsId"/>
+			<result column="items_num" property="itemsNum"/>
+		</collection>
+	</resultMap>
+	
+	
+	
+	<select id="findOrdersUserdetail" resultMap="ordersdetailResultMap">
+		select o.*,u.*,od.id od_id,od.orders_id,od.items_id,od.items_num
+		from orders o left join user u on o.user_id = u.id
+		left join orderdetail od
+		on od.orders_id = o.id
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
