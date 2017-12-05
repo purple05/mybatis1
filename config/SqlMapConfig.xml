@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" 
-	"http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+	"http://mybais.org/dtd/ibatis-3-config.dtd">
 <configuration>
 
 	<properties resource="db.properties"/>
@@ -18,7 +18,7 @@
 	</environments>
 	<!-- 映射文件的位置 -->
 	<mappers>
-		<mapper resource="sqlmap/UserMapper.xml"/>
-		<mapper resource="sqlmap/OrderdetailMapper.xml"/>
+		<!-- <mapper resource="cn/com/mybatis/mapper/UserMapper.xml"/> -->
+		<mapper class="cn.com.mybatis.mapper.UserMapper"/>
 	</mappers>
 </configuration> 
