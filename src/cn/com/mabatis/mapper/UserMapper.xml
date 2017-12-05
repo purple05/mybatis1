@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="test">
+	<insert id="save" parameterType="com.hzw.bean.User">
+		INSERT INTO user_cstms values(#{uid},#{username},#{password},#{email})
+	</insert>
+	
+	<select id="findAll" resultType="com.hzw.bean.User">
+		select * from user_cstms
+	</select>
+	<select id="findByName" parameterType="String" resultType="com.hzw.bean.User">
+		select * from user_cstms where username like '%${value}%'
+	</select>
+</mapper>
+
+
+
+
+
+
+
