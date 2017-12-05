@@ -7,6 +7,18 @@
 		INSERT INTO user(username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
 	</insert>
 	
+	<resultMap type="cn.com.mybatis.bean.User" id="UserResultMap">
+		<id column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="birthday" property="birthday"/>
+		<result column="sex" property="sex"/>
+		<result column="address" property="address"/>
+	</resultMap>
+	
+	<select id="findAllUser" resultMap="UserResultMap">
+		select * from user
+	</select>
+	
 </mapper>
 
 

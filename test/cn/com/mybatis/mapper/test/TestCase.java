@@ -50,4 +50,13 @@ public class TestCase {
 			System.out.println(orders);
 		}
 	}
+	@Test
+	public void findAllUser() throws Exception{
+		SqlSession session = ssf.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		List<User> list = mapper.findAllUser();
+		for (User user : list) {
+			System.out.println(user);
+		}
+	}
 }

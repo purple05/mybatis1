@@ -19,8 +19,8 @@
 		</association>
 	</resultMap>
 	
-	<resultMap type="cn.com.mybatis.bean.Orders" id="ordersdetailResultMap">
-		<id property="id" column="id"/>
+	<resultMap type="cn.com.mybatis.bean.Orders" id="ordersdetailResultMap" extends="ordersResultMap">
+		<!-- <id property="id" column="id"/>
 		<result column="number" property="number"/>
 		<result column="createtime" property="createtime"/>
 		<result column="note" property="note"/>
@@ -31,7 +31,7 @@
 			<result column="birthday" property="birthday"/>
 			<result column="sex" property="sex"/>
 			<result column="address" property="address"/>
-		</association>
+		</association> -->
 		
 		<collection property="orderdetails" ofType="cn.com.mybatis.bean.Orderdetail">
 			<id column="od_id" property="id"/>
@@ -44,11 +44,17 @@
 	
 	
 	<select id="findOrdersUserdetail" resultMap="ordersdetailResultMap">
-		select o.*,u.*,od.id od_id,od.orders_id,od.items_id,od.items_num
+		select *,<!-- o.*,u.*,od.* -->
+			 od.id od_id<!--
+			od.orders_id,
+			od.items_id,
+			od.items_num -->
 		from orders o left join user u on o.user_id = u.id
 		left join orderdetail od
 		on od.orders_id = o.id
 	</select>
+	
+	
 	
 </mapper>
 
